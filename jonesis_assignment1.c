@@ -71,8 +71,8 @@ int main(void) {
         powerHeight = pow(height, 2);
         heightSquared = powerHeight;
 
-        top = powerRadius - powerTopHeight;
-        bottom = powerRadius - powerBottomHeight;
+        top = sqrt(powerRadius - powerTopHeight);
+        bottom = sqrt(powerRadius - powerBottomHeight);
 
         // Finding Surface Areas
         saTopHeight = myPi * top;
@@ -81,7 +81,7 @@ int main(void) {
 
         // Total Calculations
         totalSa = saTopHeight + saBottomHeight + saLateral;
-        volume = (1.0 / 6.0) * myPi * height * ((3 * powerTopHeight) + (3 * powerBottomHeight) + powerHeight);
+        volume = (myPi * height / 6.0) * ((3 * top * top) + (3 * bottom * bottom) + powerHeight);
 
         saSum = saSum + totalSa;
         volumeSum = volumeSum + volume;
