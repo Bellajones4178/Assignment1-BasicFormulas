@@ -32,7 +32,16 @@ int main(void) {
     scanf("%f", &bottomHeight);
 
     // Print Paramenters entered by user
-    printf("Entered data: R = %f ha = %f hb = %f./n", radius, topHeight, bottomHeight);
+    printf("Entered data: R = %.2f ha = %.2f hb = %.2f./n", radius, topHeight, bottomHeight);
+
+    // Checking for correct values
+    if (radius, topHeight, bottomHeight < 0) {
+        printf("Invalid Input.");
+    } else if (radius < topHeight, bottomHeight) {
+        printf("Invalid Input.");
+    } else if (bottomHeight > topHeight) {
+        printf("Invalid Input.");
+    }
 
     return 0;
 }
