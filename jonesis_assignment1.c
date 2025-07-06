@@ -10,8 +10,10 @@ int main(void) {
     float saTopHeight;
     float saBottomHeight;
     float saSurfaceArea;
+    float saLateral;
     float powerTopHeight;
-    const myPi = 3.14159265359;
+    float powerBottomHeight;
+    const float myPi = 3.14159265359;
 
     // Segment Questions
     printf("How many spherical segments do you want to evaluate [2-10]?\n");
@@ -52,6 +54,14 @@ int main(void) {
     powerTopHeight = pow(topHeight, 2);
     saTopHeight = powerTopHeight * myPi;
     printf("%.2f", saTopHeight);
+
+    powerBottomHeight = pow(bottomHeight, 2);
+    saBottomHeight = powerBottomHeight * myPi;
+    printf("%.2f", saBottomHeight);
+
+    saLateral = 2 * myPi * radius * topHeight * bottomHeight;
+    printf("%.2f", saLateral);
+
 
     return 0;
 }
