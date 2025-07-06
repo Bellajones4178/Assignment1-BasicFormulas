@@ -3,14 +3,19 @@
 
 int main(void) {
     // Declaring Variables
-    float segment;
+    int segment;
     float radius;
     float topHeight;
     float bottomHeight;
+    float saTopHeight;
+    float saBottomHeight;
+    float saSurfaceArea;
+    float powerTopHeight;
+    const myPi = 3.14159265359;
 
     // Segment Questions
     printf("How many spherical segments do you want to evaluate [2-10]?\n");
-    scanf("%f", &segment);
+    scanf("%d", &segment);
     
     // Check for correct value
     if (segment < 2) {
@@ -32,16 +37,21 @@ int main(void) {
     scanf("%f", &bottomHeight);
 
     // Print Paramenters entered by user
-    printf("Entered data: R = %.2f ha = %.2f hb = %.2f./n", radius, topHeight, bottomHeight);
+    printf("Entered data: R = %.2f ha = %.2f hb = %.2f.\n", radius, topHeight, bottomHeight);
 
     // Checking for correct values
-    if (radius, topHeight, bottomHeight < 0) {
+    if (radius < 0 || topHeight < 0 || bottomHeight < 0) {
         printf("Invalid Input.");
-    } else if (radius < topHeight, bottomHeight) {
+    } else if (radius < topHeight || radius < bottomHeight) {
         printf("Invalid Input.");
     } else if (bottomHeight > topHeight) {
         printf("Invalid Input.");
     }
+
+    // Finding Surface Area
+    powerTopHeight = pow(topHeight, 2);
+    saTopHeight = powerTopHeight * myPi;
+    printf("%.2f", saTopHeight);
 
     return 0;
 }
