@@ -11,29 +11,25 @@ int main(void) {
     float saBottomHeight;
     float saSurfaceArea;
     float saLateral;
-    float powerTopHeight;
-    float powerBottomHeight;
-    const float myPi = 3.14159265359;
     float totalSa;
     float volume;
     float powerRadius;
+    float powerTopHeight;
+    float powerBottomHeight;
+    float powerHeight;
+    float heightSquared;
     float top;
     float bottom;
     float height;
-    float topSquared;
-    float bottomSquared;
-    float heightSquared;
-    float powerHeight;
-
+    const float myPi = 3.14159265359;
 
     // Segment Questions
     printf("How many spherical segments do you want to evaluate [2-10]?\n");
     scanf("%d", &segment);
-    
+
     // Check for correct value
-    if (segment < 2) {
-        return 0;
-    } else if (segment > 10) {
+    if (segment < 2 || segment > 10) {
+        printf("Invalid Input: Segment count must be between 2 and 10.\n");
         return 0;
     } else {
         printf("Obtaining data for spherical segment number 1.\n");
@@ -49,50 +45,48 @@ int main(void) {
     printf("What is the height of the bottom area of the spherical segment (hb)?\n");
     scanf("%f", &bottomHeight);
 
-    // Print Paramenters entered by user
+    // Print Parameters entered by user
     printf("Entered data: R = %.2f ha = %.2f hb = %.2f.\n", radius, topHeight, bottomHeight);
 
     // Checking for correct values
     if (radius < 0 || topHeight < 0 || bottomHeight < 0) {
-        printf("Invalid Input.");
+        printf("Invalid Input.\n");
         return 0;
     } else if (radius < topHeight || radius < bottomHeight) {
-        printf("Invalid Input.");
+        printf("Invalid Input.\n");
         return 0;
     } else if (bottomHeight > topHeight) {
-        printf("Invalid Input.");
+        printf("Invalid Input.\n");
         return 0;
     }
 
-    // Finding a, b, and h
+    // Pre-calculations
     powerRadius = pow(radius, 2);
+    powerTopHeight = pow(topHeight, 2);
+    powerBottomHeight = pow(bottomHeight, 2);
+    height = topHeight - bottomHeight;
+    powerHeight = pow(height, 2);
+    heightSquared = pow(height, 2); // same as powerHeight
+
     top = powerRadius - powerTopHeight;
     bottom = powerRadius - powerBottomHeight;
-    
-    topSquared = sqrt(top);
-    bottomSquared = sqrt(bottom);
 
-    height = topHeight - bottomHeight;
+    // Finding Surface Areas
+    saTopHeight = myPi * top;
+    printf("Top cap surface area: %.2f\n", saTopHeight);
 
-    heightSquared = sqr(height);
-    powerHeight = pow(height, 2);
+    saBottomHeight = myPi * bottom;
+    printf("Bottom cap surface area: %.2f\n", saBottomHeight);
 
-    // Finding Surface Area
-    powerTopHeight = pow(topSquared, 2);
-    saTopHeight = powerTopHeight * myPi;
+    saLateral = 2 * myPi * radius * height;
+    printf("Lateral surface area: %.2f\n", saLateral);
 
-    powerBottomHeight = pow(bottomSquared, 2);
-    saBottomHeight = powerBottomHeight * myPi;
-
-    saLateral = 2 * myPi * radius * topHeight * height;
-
-    // Finding Total Surface Area and Volume
     totalSa = saTopHeight + saBottomHeight + saLateral;
+    printf("Total surface area: %.2f\n", totalSa);
 
-    volume = (1/6) * myPi * height * ((3*powerTopHeight) + (3*(powerBottomHeight) + (3 * powerHeight)));
-
-
-    printf("Total Surface Area = %.2f Volume = %.2f", totalSa, volume);
+    // Volume
+    volume = (1.0 / 6.0) * myPi * height * ((3 * powerTopHeight) + (3 * powerBottomHeight) + powerHeight);
+    printf("Volume: %.2f\n", volume);
 
     return 0;
 }
