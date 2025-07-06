@@ -75,8 +75,8 @@ int main(void) {
         bottom = sqrt(powerRadius - powerBottomHeight);
 
         // Finding Surface Areas
-        saTopHeight = myPi * top;
-        saBottomHeight = myPi * bottom;
+        saTopHeight = myPi * pow(top, 2);
+        saBottomHeight = myPi * pow(bottom, 2);
         saLateral = 2 * myPi * radius * height;
 
         // Total Calculations
